@@ -1,17 +1,13 @@
-# Zatura UAE-focused website
+# Zatura forms — Vercel deployment
 
-Deploy the contents of this directory to the root of zatura.in on Vercel. `vercel.json` enables clean URLs.
+Deploy the **entire folder** (not just index.html) to Vercel. The `/api/contact` serverless function handles all enquiries and demo requests.
 
-## Included
-- Updated homepage with product-demo CTA and industry links
-- Three original, detailed landing pages for Dubai architects, UAE contractors and Dubai interior designers
-- Page-specific titles, descriptions, canonical tags, Open Graph, structured data, FAQ content and internal linking
-- robots.txt and sitemap.xml with clean URLs
-- Contact email: zaturateams@gmail.com
+## Required setup (one-time)
+1. Sign up at https://resend.com and verify a sending domain you own (for example, zatura.in) in Resend, adding its required DNS records.
+2. In Vercel project → Settings → Environment Variables, add `RESEND_API_KEY` (your secret Resend API key) and `FROM_EMAIL` (a sender address on your verified domain, e.g. `Zatura <enquiries@zatura.in>`).
+3. Redeploy. The form will send emails to `zaturateams@gmail.com`; the customer's address is set as reply-to.
+4. Test both a normal enquiry and **Book a Free Product Demo** on the deployed domain. Verify delivery in Gmail and Resend logs, including spam folder.
 
-## Before launching
-- Test the live product demo and contact form; the homepage form depends on its existing JavaScript and may need a real email/backend integration.
-- Add **real** screenshots, genuine client reviews and verified case studies as they become available.
-- Set up Google Search Console and submit https://zatura.in/sitemap.xml.
-- Run PageSpeed Insights on the live site; real-world performance cannot be guaranteed from HTML alone.
-- Confirm feature availability and hosting terms before making sales claims.
+**Important:** Until these environment variables and DNS verification are configured, the form deliberately displays an error instead of falsely claiming an enquiry was delivered. Static HTML hosting without Vercel serverless support cannot send the forms.
+
+No API keys are included in this download. Add bot protection and rate limiting before high-volume marketing campaigns.
